@@ -3,6 +3,7 @@
   "description": "WordPress nonce functionality in more object-oriented way",
   "type": "library",
   "keywords": [
+    "z-nonce",
     "nonce",
     "wordpress",
     "wp"
@@ -20,18 +21,11 @@
     "php": ">=5.6"
   },
   "require-dev": {
-    "brain/monkey": "^1.4",
-    "mockery/mockery": "~0.9",
     "phpunit/phpunit": "~4.8|~5.1"
   },
   "autoload": {
     "psr-4": {
       "Zdev\\ZNonce\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Zdev\\ZNonce\\Tests\\": "tests"
     }
   }
 }
