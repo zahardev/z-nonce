@@ -17,6 +17,11 @@ class ZNonce {
 	private static $instance;
 
 	/**
+	 * @var int Nonce life
+	 */
+	private $nonce_life = DAY_IN_SECONDS;
+
+	/**
 	 * @return ZNonce
 	 */
 	public static function init() {
@@ -210,6 +215,32 @@ class ZNonce {
 	}
 
 	/**
+	 * Set nonce life
+	 *
+	 * @param $seconds
+	 *
+	 * @return bool|int
+	 */
+	public function set_nonce_life( $seconds ) {
+		if ( is_int( $seconds ) ) {
+			$this->nonce_life = $seconds;
+
+			return $this->nonce_life;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get nonce life
+	 *
+	 * @return int
+	 */
+	public function get_nonce_life() {
+		return $this->nonce_life;
+	}
+
+	/**
 	 * ZNonce constructor.
 	 */
 	private function __construct() {
@@ -241,9 +272,7 @@ class ZNonce {
 	 * @return float
 	 */
 	private function nonce_tick() {
-		$nonce_life = apply_filters( 'nonce_life', DAY_IN_SECONDS );
-
-		return ceil( time() / ( $nonce_life / 2 ) );
+		return ceil( time() / ( $this->nonce_life / 2 ) );
 	}
 
 	/**
@@ -251,21 +280,21 @@ class ZNonce {
 	 *
 	 * @param        $data
 	 *
-	 * @return false|string
+	 * @return string
 	 */
 	private function get_hash( $data ) {
-		$salt = wp_salt('nonce');
+		$salt = wp_salt( 'nonce' );
 
-		if (strlen($salt) > 64) {
-			$salt = pack('H32', md5($salt));
+		if ( strlen( $salt ) > 64 ) {
+			$salt = pack( 'H32', md5( $salt ) );
 		}
 
-		$salt = str_pad($salt, 64, chr(0));
+		$salt = str_pad( $salt, 64, chr( 0 ) );
 
-		$ipad = (substr($salt, 0, 64) ^ str_repeat(chr(0x36), 64));
-		$opad = (substr($salt, 0, 64) ^ str_repeat(chr(0x5C), 64));
+		$ipad = ( substr( $salt, 0, 64 ) ^ str_repeat( chr( 0x36 ), 64 ) );
+		$opad = ( substr( $salt, 0, 64 ) ^ str_repeat( chr( 0x5C ), 64 ) );
 
-		return md5($opad . pack('H32', md5($ipad . $data)));
+		return md5( $opad . pack( 'H32', md5( $ipad . $data ) ) );
 	}
 
 }
