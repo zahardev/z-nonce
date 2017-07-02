@@ -2,3 +2,4 @@
 vendor
 tests/build
 wpcs
+composer.lock
