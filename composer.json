@@ -1,5 +1,5 @@
 {
-  "name": "zdev/z-nonce",
+  "name": "zahardoc/z-nonce",
   "description": "WordPress nonce functionality in more object-oriented way",
   "type": "library",
   "keywords": [
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Zdev\\ZNonce\\": "src"
+      "Zahardoc\\ZNonce\\": "src"
     }
   }
 }

@@ -1,19 +1,19 @@
 <?php
 
-namespace Zdev\ZNonce\Tests\Unit;
+namespace Zahardoc\ZNonce\Tests\Unit;
 
-use Zdev\ZNonce\ZNonce;
+use Zahardoc\ZNonce\ZNonce;
 
 /**
  * Tests for ZNonce class.
  *
- * @package Zdev\ZNonce\Tests\Unit
+ * @package Zahardoc\ZNonce\Tests\Unit
  *
  * @since   1.0.0
  */
 class ZNonceTest extends \WP_UnitTestCase {
 	/**
-	 * @var \Zdev\ZNonce\ZNonce
+	 * @var \Zahardoc\ZNonce\ZNonce
 	 * */
 	private static $ZNonce;
 

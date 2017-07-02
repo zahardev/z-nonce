@@ -1,12 +1,12 @@
 <?php
 
-namespace Zdev\ZNonce;
+namespace Zahardoc\ZNonce;
 
 /**
  * Class ZNonce
  * Main plugin class.
  *
- * @package Zdev\ZNonce
+ * @package Zahardoc\ZNonce
  * @since   1.0.0
  */
 class ZNonce {
