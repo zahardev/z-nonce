@@ -1,4 +1,4 @@
-# ZNonce Contents
+# ZNonce
 
 * [Introduction](#introduction)
 * [Installation](#installation)
@@ -11,6 +11,7 @@
 		* [Verifying a nonce passed from an admin screen](#verifying-a-nonce-passed-from-an-admin-screen)
 		* [Verifying a nonce passed in an AJAX request](#verifying-a-nonce-passed-in-an-ajax-request)
 		* [Verifying a nonce passed in some other context](#verifying-a-nonce-passed-in-some-other-context)
+* [Testing](#testing)
 * [License](#license)
 	
 
@@ -45,6 +46,15 @@ Then you could get ZNonce everywhere in your code using ZNonce::init() function:
 
 Then you can create or verify a nonce.
 
+Note that nonces has lifetime after which they expire. By default it is 24 hours, but you can modify it by set_nonce_life() method. Just call it with number of seconds you want nonce to live.
+Example: set nonce time to 1 minute:
+
+    $znonce->set_nonce_life(60);
+
+Also, you can always check check nonce life time by get_nonce_life():
+
+    $life = $znonce->get_nonce_life();
+
 
 
 ## Creating a nonce
@@ -75,9 +85,8 @@ If you need nonce itself to use it in some other way, call create_nonce() method
 
 
 ## Verifying a nonce
-Note that nonces has lifetime after which they expire. By default it is 24 hours, but you can modify it.
-(if nonce is valid, all verify methods return 1 or 2 depending on how much time ago it has been created. If it is less then half of expire time - method returns 1, otherwise - 2.
 
+If nonce is valid, all verify methods return 1 or 2 depending on how much time ago it has been created. If it is less then half of expire time - method returns 1, otherwise - 2.
 
 ### Verifying a nonce passed from an admin screen
 
@@ -103,6 +112,15 @@ If you want just verify a nonce and then do some of your custom actions, use ver
 
 
 
+
+----------
+# Testing
+ZNonce is provided with phpunit tests. To run them, please follow these steps:
+
+1. Go to the library root directory: `cd /your/vendor/path/zahardoc/z-nonce`
+2. Install environment:  `tests/install.sh` 
+3. Install library dependencies: `composer update`
+4. Run tests: `vendor/bin/phpunit` 
 
 ----------
 
