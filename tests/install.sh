@@ -120,11 +120,6 @@ install_db() {
 		fi
 	fi
 
-	EXISTS=`mysqlshow --user="$DB_USER" --password="$DB_PASS"$EXTRA $DB_NAME| grep -v Wildcard | grep -o $DB_NAME`
-    if [ "$EXISTS" == "$DB_NAME" ]; then
-        return
-    fi
-
 	# create database
 	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
 }
